@@ -1,0 +1,51 @@
+body {
+    margin-top: 7.5%;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#cenario {
+    width: 1000px;
+    height: 400px;
+    border: solid 1px black;
+}
+
+#personagem {
+    width: 50px;
+    height: 20px;
+    background-color: rgb(209, 149, 71);
+    position: relative;
+    top: 380px;
+}
+
+.animacao {
+    animation: personagem 500ms infinite linear;            
+}
+
+@keyframes personagem {
+    0%{top: 380px;}
+    30%{top: 200px}
+    70%{top: 200px}
+    100%{top: 380px}
+}
+
+#obstaculo {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: relative;
+    top: 360px;
+    left: 980px;
+    animation: obstaculo 1s infinite linear;
+}
+
+@keyframes obstaculo {
+    0%{left: 980px;}
+    100%{left: -30px}
+}
+

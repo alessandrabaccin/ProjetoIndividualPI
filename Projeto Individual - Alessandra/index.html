@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt" onclick="pular()">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div class="container">
+    <div id="cenario">
+        <div id="personagem"></div>
+        <div id="obstaculo"></div>
+    </div>
+</div>
+    
+</body>
+</html>
+<script>
+
+    var personagem = document.getElementById('personagem');
+    var obstaculo = document.getElementById('obstaculo');
+    
+    function pular() {
+        if (personagem.classList != 'animacao') {
+            personagem.classList.add('animacao');
+        }
+        setTimeout(function(){
+            personagem.classList.remove('animacao');
+        }, 500);
+    }
+    var colisao = setInterval(function() {
+        var TPersonagem = parseInt(window.getComputedStyle(personagem).getPropertyValue('top'));
+
+        var LObstaculo = parseInt(window.getComputedStyle(obstaculo).getPropertyValue('left'));
+        if (LObstaculo < 50 && LObstaculo > 0 && TPersonagem >= 360) {
+            obstaculo.style.animation = 'none';
+            obstaculo.style.display = 'none';
+            alert ('Você perdeu');
+        }
+    }, 10)
+
+</script>
