@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt" onclick="pular()">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,39 +8,66 @@
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
-<div class="container">
-    <div id="cenario">
-        <div id="personagem"></div>
-        <div id="obstaculo"></div>
+
+    <div class="container">
+        <div id="divInicio" style="text-align: center;">
+            Regras:<br>
+            1 - Você é um personagem da tropa de exploração de Shingeki no Kyojin (Ataque aos Titãs) e deve fugir pelo máximo de tempo possível dos titãs. <br>
+            2 - Para fugir, basta iniciar o jogo escolhendo um dos 3 personagens disponíveis. Após isso, você é livre para clicar em qualquer lugar da tela para desviar dos titãs no tempo certo. <br>
+            3 - Ao final, após ser derrotado, você poderá cadastrar sua pontuação e checar o ranking geral. Caso não tenha interesse, poderá apenas recomeçar o jogo. <br>
+            4 - Sasageyo! <br>
+            Escolha seu personagem: <br>
+            <div>Armin</div>
+            <div>Eren</div>
+            <div>Mikasa</div>
+        </div>
+        <button id="btComecar" onclick="comecar()">Começar</button>
+        <div id="divJogo" style="display: none">
+            <div id="cenario">
+                <div id="personagem"></div>
+                <div id="obstaculo"></div>
+            </div>
+        </div>
     </div>
-</div>
-    
+
 </body>
 </html>
 <script>
 
-    var personagem = document.getElementById('personagem');
-    var obstaculo = document.getElementById('obstaculo');
-    
+    var pontos = 0;
     function pular() {
         if (personagem.classList != 'animacao') {
             personagem.classList.add('animacao');
         }
-        setTimeout(function(){
+        setTimeout(function () {
             personagem.classList.remove('animacao');
         }, 500);
     }
-    var colisao = setInterval(function() {
-        var TPersonagem = parseInt(window.getComputedStyle(personagem).getPropertyValue('top'));
 
+    var colisao = setInterval(function () {
+        var TPersonagem = parseInt(window.getComputedStyle(personagem).getPropertyValue('top'));
+        
         var LObstaculo = parseInt(window.getComputedStyle(obstaculo).getPropertyValue('left'));
         if (LObstaculo < 50 && LObstaculo > 0 && TPersonagem >= 360) {
-            obstaculo.style.animation = 'none';
-            obstaculo.style.display = 'none';
-            alert ('Você perdeu');
+
+            divJogo.style.display = 'none';
+            alert(`Você perdeu! ${pontos}`);
+            btComecar.style.display = 'block';
         }
-    }, 10)
+
+    }, 10);
+
+    function comecar() {
+        divInicio.style.display = 'none';
+        btComecar.style.display = 'none';
+        divJogo.style.display = 'flex';
+        pontos = 0;
+    }
+    
+    var pontuacao = setInterval(function () {
+        pontos++;
+    }, 100)
 
 </script>
