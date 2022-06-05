@@ -5,32 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Regras</title>
+    <link rel="stylesheet" href="stylejogo.css">
 </head>
 
 <body>
 
-    <div class="container">
-        <div id="divInicio" style="text-align: center;">
-            Regras:<br>
-            1 - Você é um personagem da tropa de exploração de Shingeki no Kyojin (Ataque aos Titãs) e deve fugir pelo máximo de tempo possível dos titãs. <br>
-            2 - Para fugir, basta iniciar o jogo escolhendo um dos 3 personagens disponíveis. Após isso, você é livre para clicar em qualquer lugar da tela para desviar dos titãs no tempo certo. <br>
-            3 - Ao final, após ser derrotado, você poderá cadastrar sua pontuação e checar o ranking geral. Caso não tenha interesse, poderá apenas recomeçar o jogo. <br>
-            4 - Sasageyo! <br>
-            Escolha seu personagem: <br>
-            <div>Armin</div>
-            <div>Eren</div>
-            <div>Mikasa</div>
+    <div class="header">
+            <h1 class="titulo">Escape the titan</h1>
+    </div>
+
+    <div class="simulador">
+        <div class="container">
+            <div id="divInicio" style="text-align: center; color: black;">
+            <p style="color: #337c9f; font-size: 40px; font-weight: 500;">Regras</p>
+            1 - Após clicar em 'começar', você será direcionado para o jogo e ele iniciará meio segundo depois; <br>
+            2- Em jogo, basta clicar em qualquer canto da tela para pular no tempo certo e desviar dos titãs; <br>
+            3 - Boa sorte!
+            <br>
+            <br>
         </div>
-        <button id="btComecar" onclick="comecar()">Começar</button>
+        <button id="btComecar" class="btn" onclick="comecar()">Começar</button>
+        <span id= 'spnRanking' style="font-size: 15px; color: black;"></span>
         <div id="divJogo" style="display: none">
-            <div id="cenario">
-                <div id="personagem"></div>
-                <div id="obstaculo"></div>
+                <div id="cenario">
+                    <div id="personagem"></div>
+                    <div id="obstaculo"></div>
+                </div>
             </div>
         </div>
+        <div id="divGambiarra" style="height: 210px;">
+
+        </div>
     </div>
+
+    <div class="footer" id="foot">
+            <h4>Feito por Alessandra Baccin, SPTech</h4>
+    </div>
+
 
 </body>
 </html>
@@ -55,12 +67,17 @@
             divJogo.style.display = 'none';
             alert(`Você perdeu! ${pontos}`);
             btComecar.style.display = 'block';
+            ranking();
+            spnRanking.style.display = 'block';
         }
 
     }, 10);
 
     function comecar() {
+        spnRanking.style.display = 'none';
+        foot.style.display = 'none';
         divInicio.style.display = 'none';
+        divGambiarra.style.display = 'none';
         btComecar.style.display = 'none';
         divJogo.style.display = 'flex';
         pontos = 0;
@@ -69,5 +86,48 @@
     var pontuacao = setInterval(function () {
         pontos++;
     }, 100)
+
+    function ranking() {
+        fetch("/usuarios/ranking", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    spnRanking.innerHTML = '';
+                    for (var index = 0; index < json.length; index++) {
+                        spnRanking.innerHTML += `${json[index].nome}, ${json[index].pontos} <br>`;
+                    }
+
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao carregar o ranking");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 
 </script>

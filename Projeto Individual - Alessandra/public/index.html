@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AcquaTec | Página Inicial</title>
+    <title>Escape the titan | Home</title>
 
     <script src="./js/funcoes.js"></script>
 
@@ -21,7 +21,7 @@
 <body>
     <div class="header">
         <div class="container">
-            <h1 class="titulo">Titan Fighter</h1>
+            <h1 class="titulo">Escape the titan</h1>
             <ul class="navbar">
                 <li class="agora">Inicial</li>
                 <li>
@@ -37,14 +37,12 @@
         </div>
     </div>
 
-    <div class="banner">
+   <div class="banner"> 
         <div class="container">
-            <div class="container tamanho-conteudo" style="color: black;">
-                RANKING
-                </div>
-            </div>
+                <span  style="color: rgb(25, 117, 192);">RANKING</span>
+                
+                <span id= 'spnRanking' style="font-size: 15px; color: black;"></span>
         </div>
-    </div>
     </div>
 
     <!--footer inicio-->
@@ -57,3 +55,50 @@
 </body>
 
 </html>
+<script>
+
+    ranking();
+    function ranking() {
+        fetch("/usuarios/ranking", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    //sessionStorage.EMAIL_USUARIO = json.email;
+                    for (var index = 0; index < json.length; index++) {
+                        spnRanking.innerHTML += `${json[index].nome}, ${json[index].pontos} <br>`;
+                    }
+
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao carregar o ranking");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>

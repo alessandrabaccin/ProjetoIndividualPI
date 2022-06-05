@@ -24,4 +24,8 @@ router.post("/pontuacao", function (req, res) {
     usuarioController.pontuar(req, res);
 });
 
+router.post("/ranking", function (req, res) {
+    usuarioController.ranking(req, res);
+});
+
 module.exports = router;

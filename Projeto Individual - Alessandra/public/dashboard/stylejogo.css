@@ -2,6 +2,7 @@ body {
     margin-top: 0;
     margin-bottom: 0;
     padding: 0;
+font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -55,5 +56,41 @@ body {
 }
 
 #btComecar {
-    width: 80px;
+    width: fit-content;
 }
+
+.header {
+    border-bottom: 3px solid #9f7733;
+}
+
+.footer {
+    background-color: #9f7733;
+    height: 60px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .titulo {
+    color: #9f7733;
+    width: fit-content;
+    font-weight: 500;
+  }
+
+  .btn {
+    font-family: "Barlow", sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #337c9f;
+    width: 120px;
+    align-self: center;
+    margin-top: 5px;
+  }
+
+  

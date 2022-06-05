@@ -43,9 +43,17 @@ function pontuar(idUsuario, pontos) {
     return database.executar(instrucao);
 }
 
+function ranking() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ")
+    var instrucao = 'select nome, pontos from usuario, pontuacao where fkUsuario = id order by pontos desc limit 10;';
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    pontuar
+    pontuar,
+    ranking
 };
