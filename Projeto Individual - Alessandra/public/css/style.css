@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
 }
 
 .container {
@@ -14,7 +14,7 @@ body {
 }
 
 .header {
-  border-bottom: 3px solid #32b9cd;
+  border-bottom: 3px solid #9f7733;
 }
 
 .header .container {
@@ -23,7 +23,7 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: #9f7733;
 }
 
 #cenario {
@@ -83,12 +83,12 @@ body {
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
+  color: #9f7733;
 }
 
 
 .titulo {
-  color: #32b9cd;
+  color: #9f7733;
   width: fit-content;
   font-weight: 500;
 }
@@ -100,7 +100,6 @@ body {
   height: fit-content;
   padding: 40px 0;
   color: white;
-  background-image: url(".././assets/imgs/bg-jelly-fish-para_outras_pags.png");
   background-size: cover;
 }
 
@@ -138,10 +137,6 @@ body {
   justify-content: center;
 }
 
-.box img {
-  width: 170px;
-}
-
 .social .container .boxes {
   display: flex;
 }
@@ -169,8 +164,8 @@ body {
 /* FOOTER */
 
 .footer {
-  background-color: #32b9cd;
-  height: 150px;
+  background-color: #9f7733;
+  height: 60px;
   color: #fff;
   display: flex;
   font-size: 15px;
@@ -184,12 +179,12 @@ body {
 /* LOGIN */
 
 .banner .container .card {
-  background-color: #e5e5e5;
+  background-color: #ffffff;
   height: fit-content;
   width: 400px;
   display: flex;
   flex-direction: column;
-  color: palevioletred;
+  color: #337c9f;
   align-items: center;
   border-radius: 4px;
 }
@@ -251,7 +246,7 @@ button {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
+  border: 2px solid #9f7733;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
@@ -265,7 +260,7 @@ input {
   font-size: 18px;
   padding: 10px 15px;
   color: white;
-  background-color: #e6005a;
+  background-color: #337c9f;
   width: 120px;
   align-self: center;
   margin-top: 5px;
