@@ -95,7 +95,7 @@ function cadastrar(req, res) {
 }
 
 function pontuar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
     var idUsuario = req.body.idServer;
     var pontos = req.body.pontosServer;
     

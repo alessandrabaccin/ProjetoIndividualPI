@@ -379,12 +379,11 @@ input {
   cursor: pointer;
 }
 
-/* pagina extra - simulador */
-.simulador {
+.agradecimentos {
   color: white;
 
 }
 
-.simulador .container {
+.agradecimentos .container {
   flex-direction: column
 }

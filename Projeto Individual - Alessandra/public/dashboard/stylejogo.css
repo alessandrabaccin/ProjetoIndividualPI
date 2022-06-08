@@ -19,9 +19,9 @@ font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #personagem {
-    width: 50px;
+    width: 20px;
     height: 20px;
-    background-color: rgb(209, 149, 71);
+    background-color: rgb(184, 128, 56);
     position: relative;
     top: 380px;
 }
@@ -40,10 +40,10 @@ font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
 #obstaculo {
     width: 20px;
-    height: 20px;
+    height: 60px;
     background-color: red;
     position: relative;
-    top: 360px;
+    top: 320px;
     left: 980px;
     animation: obstaculo 1s infinite linear;
     animation-delay: 0.5s;
@@ -61,6 +61,8 @@ font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
 .header {
     border-bottom: 3px solid #9f7733;
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer {
@@ -93,4 +95,16 @@ font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 5px;
   }
 
+ #divPerdeu {
+    font-size: 50px;
+    padding: 60px;
+  }
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    align-items: center;
+    align-content: space-between;
+}
   

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regras</title>
+    <script src="../js/funcoes.js"></script>
     <link rel="stylesheet" href="stylejogo.css">
 </head>
 
@@ -13,29 +14,34 @@
 
     <div class="header">
             <h1 class="titulo">Escape the titan</h1>
+        <button onclick="limparSessao()" id="btSair" class="btn" style="font-size: 15px; width: 90px;">Sair</button>
     </div>
 
-    <div class="simulador">
+    <div class="agradecimentos">
         <div class="container">
             <div id="divInicio" style="text-align: center; color: black;">
             <p style="color: #337c9f; font-size: 40px; font-weight: 500;">Regras</p>
             1 - Após clicar em 'começar', você será direcionado para o jogo e ele iniciará meio segundo depois; <br>
-            2- Em jogo, basta clicar em qualquer canto da tela para pular no tempo certo e desviar dos titãs; <br>
+            2- Em jogo, basta clicar em qualquer lugar da tela para pular no tempo certo e desviar dos titãs; <br>
             3 - Boa sorte!
             <br>
             <br>
         </div>
         <button id="btComecar" class="btn" onclick="comecar()">Começar</button>
         <span id= 'spnRanking' style="font-size: 15px; color: black;"></span>
-        <div id="divJogo" style="display: none">
+        <div id="divJogo" style="display: none ">
                 <div id="cenario">
+                    <div id="divPerdeu" style="display: none; text-align: center; color: rgb(156, 0, 0);">
+                    
+                    </div>
                     <div id="personagem"></div>
                     <div id="obstaculo"></div>
                 </div>
             </div>
+        
         </div>
         <div id="divGambiarra" style="height: 210px;">
-
+ 
         </div>
     </div>
 
@@ -62,13 +68,31 @@
         var TPersonagem = parseInt(window.getComputedStyle(personagem).getPropertyValue('top'));
         
         var LObstaculo = parseInt(window.getComputedStyle(obstaculo).getPropertyValue('left'));
-        if (LObstaculo < 50 && LObstaculo > 0 && TPersonagem >= 360) {
-
-            divJogo.style.display = 'none';
-            alert(`Você perdeu! ${pontos}`);
+        if (LObstaculo < 20 && LObstaculo > -10 && TPersonagem >= 360) {
+            var pontoFinal = pontos;
+            personagem.style.display = 'none';
+            obstaculo.style.display = 'none';
+            divPerdeu.style.display = 'block';
+            divPerdeu.innerHTML = `você perdeu! <br> Sua pontuação é de ${pontoFinal}  pontos`;
             btComecar.style.display = 'block';
-            ranking();
             spnRanking.style.display = 'block';
+            fetch("/usuarios/pontuacao", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idServer: sessionStorage.ID_USUARIO,
+                    pontosServer: pontoFinal
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO pontuar()!")
+
+                ranking();
+            }).catch(function (erro) {
+                console.log(erro);
+                ranking();
+            })
         }
 
     }, 10);
@@ -80,6 +104,9 @@
         divGambiarra.style.display = 'none';
         btComecar.style.display = 'none';
         divJogo.style.display = 'flex';
+        divPerdeu.style.display = 'none';
+        personagem.style.display = 'block';
+        obstaculo.style.display = 'block';
         pontos = 0;
     }
     
@@ -129,5 +156,6 @@
 
         return false;
     }
+    
 
 </script>

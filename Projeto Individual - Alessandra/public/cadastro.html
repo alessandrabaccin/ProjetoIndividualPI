@@ -12,7 +12,7 @@
     <script src="./js/funcoes.js"></script>
 
 
-    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="icon" href="./assets/icon/titan.png">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./simulador.html">Agradecimentos</a>
+                    <a href="./agradecimentos.html">Agradecimentos</a>
                 </li>
                 <li>
                     <a href="./login.html">Login</a>
@@ -124,6 +124,7 @@
         else {
             setInterval(sumirMensagem, 5000)
         }
+        
 
         if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
             cardErro.style.display = "block"
@@ -135,6 +136,45 @@
             setInterval(sumirMensagem, 5000)
         }
 
+
+        if (senhaVar.length < 6) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha precisa ter 6 caracteres ou mais!";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        var maiusculas = /[A-Z]/;
+        var minusculas = /[a-z]/;
+        var numeros = /[0-9]/;
+
+        var Lmaiusculas = 0;
+        var Lminusculas = 0;
+        var Nnumeros = 0;
+
+        for (var qtdSenha = 0; qtdSenha < senhaVar.length; qtdSenha++) {
+            if (maiusculas.test(senhaVar[qtdSenha])) {
+                Lmaiusculas++;
+            }
+            else if (minusculas.test(senhaVar[qtdSenha])) {
+                Lminusculas++;
+            }
+            else if (numeros.test(senhaVar[qtdSenha])) {
+                Nnumeros++;
+            }
+        }
+        if (Lmaiusculas > 0 && Lminusculas > 0 && Nnumeros >0) {
+            setInterval(sumirMensagem, 5000);
+        } else {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha precisa ter pelo menos uma letra maiúscula, uma letra minúscula e um número!";
+            finalizarAguardar();
+            return false;
+        }
+
         if (senhaVar != confirmacaoSenhaVar) {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!";
@@ -142,7 +182,7 @@
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            setInterval(sumirMensagem, 5000);
         }
 
         // Enviando o valor da nova input
